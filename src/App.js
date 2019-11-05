@@ -6,7 +6,7 @@ import HomePage from './views/homepage/homepage.component';
 import ShopPage from './views/shop/shop.component';
 import SignInAndSignUpPage from './views/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import './views/homepage/homepage.styles.scss';
 
@@ -22,10 +22,10 @@ class App extends React.Component {
 	unsubscribeFromAuth = null;
 	
 	componentDidMount() {
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-			this.setState({ currentUser: user });
-			
-			console.log(user);
+		// Making this async, because we make a potential api request to firestore
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+			// Fire user object that we get back from our auth library
+			createUserProfileDocument(user);
 		});
 	}
 
