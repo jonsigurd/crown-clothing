@@ -3,14 +3,16 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-	apiKey: "AIzaSyBFSmnYdJA2eAUeuVdW2jVOFfofielSN7g",
-	authDomain: "crown-clothing-f82de.firebaseapp.com",
-	databaseURL: "https://crown-clothing-f82de.firebaseio.com",
-	projectId: "crown-clothing-f82de",
-	storageBucket: "",
-	messagingSenderId: "78372993466",
-	appId: "1:78372993466:web:8631900a08bd5f200a0583"
-};
+    apiKey: "AIzaSyBFSmnYdJA2eAUeuVdW2jVOFfofielSN7g",
+    authDomain: "crown-clothing-f82de.firebaseapp.com",
+    databaseURL: "https://crown-clothing-f82de.firebaseio.com",
+    projectId: "crown-clothing-f82de",
+    storageBucket: "crown-clothing-f82de.appspot.com",
+    messagingSenderId: "78372993466",
+    appId: "1:78372993466:web:8631900a08bd5f200a0583"
+  };
+
+firebase.initializeApp(config);
 
 // Taking user auth object and place it in our database,
 // using async (we make API-request = asyncronous action)
@@ -48,10 +50,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 		}
 	}
 	
-	return userRef;
+	return userRef; // Used in app.js componentDidMount
 }
-
-firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

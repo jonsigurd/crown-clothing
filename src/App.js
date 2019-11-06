@@ -23,9 +23,27 @@ class App extends React.Component {
 	
 	componentDidMount() {
 		// Making this async, because we make a potential api request to firestore
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-			// Fire user object that we get back from our auth library
-			createUserProfileDocument(user);
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+			// Fire userAuth object that we get back from our auth library
+			if(userAuth) {
+				// Getting userRef from firebase snapShot, to check if our database
+				// has updated at that reference with new data
+				const userRef = await createUserProfileDocument(userAuth);
+				
+				// Sending snapShot object representing that data currently stored in our database
+				userRef.onSnapshot(snapShot => {
+					// Getting props of data in our database - using snapSHot to get id and .data
+					// to get all the props of the snapShot we want
+					this.setState({
+						currentUser: {
+							id: snapShot.id,
+							...snapShot.data()
+						}
+					});
+				});
+			}
+			// If userAuth object comes back as null (that's maybe if the current user signs out)
+			this.setState({ currentUser: userAuth });
 		});
 	}
 
