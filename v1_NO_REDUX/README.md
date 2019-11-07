@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lesson-1 (section 4: episode 58)
+--------------------------------
+In this lesson, we are exploring how to use Create React App. We are leveraging it to help us bootstrap our application and handle the webpack configuration.
 
-## Available Scripts
 
-In the project directory, you can run:
+Lesson-2 (section 4: episode 62)
+--------------------------------
+Creating our first component, homepage and adding scss to help us with writing our styles.
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Lesson-3 (section 4: episode 63)
+--------------------------------
+Going through our folder structure for the project, breaking out homepage component into smaller components.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+Lesson-4 (section 5: episode 65)
+--------------------------------
+Adding routing with react-router, then creating new routes for our existing homepage and our new hats page.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Lesson-5 (section 5: episode 67)
+--------------------------------
+Going over the concept of higher order components through use of the withRouter HOC from react-router-dom.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Lesson-6 (section 6: episode 70)
+--------------------------------
+Create collection-preview and collection-item components for the shop page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Lesson-7 (section 6: episode 71)
+--------------------------------
+Creating header component to demonstrate where react-router renders our content on the page using component.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Lesson-8 (section 6: episode 76)
+--------------------------------
+Starting our sign in section by creating a new sign in and sign up page, as well as start creating sign in component.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Lesson-9 (section 7: episode 85)
+--------------------------------
+Creating our firebase database and adding the firebase library into our code. Add google sign in and authentication into our application.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Lesson-10 (section 7: episode 91)
+--------------------------------
+Adding email/password sign up authentication for firebase, as a result we need to store our user objects in the database.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Lesson-11 (section 7: episode 91 (section 8: episode 99))
+--------------------------------
+Finally we update our sign-in component with our email/password sign in.

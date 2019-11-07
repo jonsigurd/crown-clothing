@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
-import HomePage from './views/homepage/homepage.component';
-import ShopPage from './views/shop/shop.component';
-import SignInAndSignUpPage from './views/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import HomePage from './pages/homepage/homepage.component';
+import ShopPage from './pages/shop/shop.component';
+import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-import './views/homepage/homepage.styles.scss';
+import './pages/homepage/homepage.styles.scss';
 
 class App extends React.Component {
 	constructor() {
