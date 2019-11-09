@@ -21,4 +21,4 @@ const userReducer = (state = INITIAL_STATE, action) =>{
 	}
 };
 
-export default userReducer;
+export default userReducer; // The header component needs to pull this

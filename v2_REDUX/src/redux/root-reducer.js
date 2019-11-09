@@ -6,6 +6,6 @@ import userReducer from './user/user.reducer';
 
 // One big json object of our app state
 export default combineReducers({
-	// user: the key that represents the slice of state for user
-	user: userReducer;
+	// prop user that represents the slice of state for user
+	user: userReducer
 });
