@@ -55,7 +55,7 @@ class App extends React.Component {
 	render() {
 		return (
 			// Switching the signin route to exact and replacing component=SignInAndSignUPage
-			// to render, so that we can redirect user to home side, if he's signed in, and if not,
+			// to render, so that we can redirect user to home site, if he's signed in, and if not,
 			// then render the SignInAndSignUpPage
 			<div>
 				<Header />
