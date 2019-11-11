@@ -3,9 +3,12 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './user/user.reducer';
+import cartReducer from './cart/cart.reducer';
 
 // One big json object of our app state
 export default combineReducers({
 	// prop user that represents the slice of state for user
-	user: userReducer
+	user: userReducer,
+	// prop cart that represents the slice of state for cart
+	cart: cartReducer
 });
