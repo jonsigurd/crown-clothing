@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom'; // Adding Redirect component to redirect users from the sign in page once they are signed in
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -51,19 +51,29 @@ class App extends React.Component {
 		this.unsubscribeFromAuth();
 	}
 	
+	// Handling routes
 	render() {
 		return (
+			// Switching the signin route to exact and replacing component=SignInAndSignUPage
+			// to render, so that we can redirect user to home side, if he's signed in, and if not,
+			// then render the SignInAndSignUpPage
 			<div>
 				<Header />
 				<Switch>
 					<Route exact path='/' component={HomePage} />
 					<Route path='/shop' component={ShopPage} />
-					<Route path='/signin' component={SignInAndSignUpPage} />
+					<Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' /> ) : (<SignInAndSignUpPage />)} /> 
 				</Switch>
 			</div>
 		);	
 	}
 }
+
+// Destructuring auth of our state of our userReducer
+const mapStateToProps = ({ user }) => ({
+	// Returning currentUser prop
+	currentUser: user.currentUser
+});
 
 // Second connect argument (first in header.component.jsx)
 // Function that gets a dispatch prop and returns an object, where the prop name will be a prop we want to pass in that dispatches the new action that we try to pass, which is SET_CURRENT_USER
@@ -74,4 +84,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connecting our app to the outcome of our initial connect call using the second argument of connect (mapDispatchToProps)
-export default connect(null, mapDispatchToProps)(App);
+// We replace our first argument from null (our currentUser) to mapStateToProps, so we have access to the actual current user once he's signed in
+export default connect(mapStateToProps, mapDispatchToProps)(App);

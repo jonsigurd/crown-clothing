@@ -1,3 +1,5 @@
+import { UserActionTypes } from './user.types';
+
 // Initial state when this component mounts for the first time
 const INITIAL_STATE = {
 	currentUser: null
@@ -8,7 +10,7 @@ const userReducer = (state = INITIAL_STATE, action) =>{
 	// Switch statement (if-else statement) that takes action.type as string
 	switch (action.type) {
 		// If we want that action
-		case 'SET_CURRENT_USER':
+		case UserActionTypes.SET_CURRENT_USER:
 			// Returning a new object which represents the new state that
 			// our userReducer is going to transform into
 			return {
