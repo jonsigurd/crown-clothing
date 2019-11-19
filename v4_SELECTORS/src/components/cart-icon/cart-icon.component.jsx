@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
+import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 
@@ -21,14 +22,10 @@ const mapDispatchToProps = dispatch => ({
 	toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-// Getting state by destructuring of cart and pull of cartItems
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-	// The below is a selector!
-	// Passing in itemCount, which is equal to accumalating the quantity on each of our cart items
-	// To get quantity to one final value, we call the native array method cartItems.reduce() and pass in
-	// 0 as the initial accumalator value, where we have the accumulatedQuantity as the first argument and
-	// cartItem as the second. This accumalates all the quantities on all the cart items
-	itemCount: cartItems.reduce((accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity, 0)
+// Getting state
+const mapStateToProps = state => ({
+	// Returning the selector call that takes the whole reducer state
+	itemCount: selectCartItemsCount(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

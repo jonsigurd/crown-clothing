@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 import './cart-dropdown.styles.scss';
 
@@ -19,10 +20,10 @@ const CartDropdown = ({ cartItems }) => (
 	</div>
 )
 
-// Getting state by destructuring of cart and pull of cartItems
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-	// Returning cartItems
-	cartItems
+// Getting state
+const mapStateToProps = state => ({
+	// Returning the selector call that takes the whole reducer state
+	cartItems: selectCartItems(state)
 })
 
 // Getting acces to cartItems using connect
