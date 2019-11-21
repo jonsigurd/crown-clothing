@@ -1,15 +1,21 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'; // Adding Redirect component to redirect users from the sign in page once they are signed in
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './App.css';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
+
 import Header from './components/header/header.component';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser} from './redux/user/user.selectors';
 
 import './pages/homepage/homepage.styles.scss';
 
@@ -62,6 +68,7 @@ class App extends React.Component {
 				<Switch>
 					<Route exact path='/' component={HomePage} />
 					<Route path='/shop' component={ShopPage} />
+					<Route exact path='/checkout' component={CheckoutPage} />
 					<Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' /> ) : (<SignInAndSignUpPage />)} /> 
 				</Switch>
 			</div>
@@ -69,10 +76,11 @@ class App extends React.Component {
 	}
 }
 
-// Destructuring auth of our state of our userReducer
-const mapStateToProps = ({ user }) => ({
-	// Returning currentUser prop
-	currentUser: user.currentUser
+// Here the createStructuredSelector call will automatically pass our top level state that we get as
+// our mapStateToProps into each subsequent selector
+const mapStateToProps = createStructuredSelector({
+	// The props we want point to the correct selector now
+	currentUser: selectCurrentUser
 });
 
 // Second connect argument (first in header.component.jsx)

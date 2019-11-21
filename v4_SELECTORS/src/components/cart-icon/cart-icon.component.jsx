@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
@@ -22,10 +23,11 @@ const mapDispatchToProps = dispatch => ({
 	toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-// Getting state
-const mapStateToProps = state => ({
-	// Returning the selector call that takes the whole reducer state
-	itemCount: selectCartItemsCount(state)
+// Here the createStructuredSelector call will automatically pass our top level state that we get as
+// our mapStateToProps into each subsequent selector
+const mapStateToProps = createStructuredSelector({
+	// The props we want point to the correct selector now
+	itemCount: selectCartItemsCount
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
