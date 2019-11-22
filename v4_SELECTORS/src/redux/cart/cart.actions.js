@@ -9,4 +9,16 @@ export const toggleCartHidden = () => ({
 export const addItem = item => ({
 	type: CartActionTypes.ADD_ITEM,
 	payload: item
-})
+});
+
+// This action is for removing one item at a time from our checkout page
+export const removeItem = item => ({
+	type: CartActionTypes.REMOVE_ITEM,
+	payload: item
+});
+
+// This action dispatches the new CLEAR_ITEM_FROM_CART type
+export const clearItemFromCart = item => ({
+	type: CartActionTypes.CLEAR_ITEM_FROM_CART,
+	payload: item
+});

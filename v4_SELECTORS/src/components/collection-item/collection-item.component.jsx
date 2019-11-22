@@ -6,9 +6,9 @@ import { addItem } from '../../redux/cart/cart.actions';
 
 import './collection-item.styles.scss';
 
-// Because of the changes in 'collection-previes.component.jsx', we now have access to our item object
-// and instead of 'id, name, price, imageUrl', we just pass in item
-// We now do an explicit return of our function by making brackets{} and 
+// Because of the changes in 'collection-previews.component.jsx', we now have access to our item
+// object and instead of 'id, name, price, imageUrl', we just pass in item
+// We now do an explicit return of our function by making brackets{}
 const CollectionItem = ({ item, addItem }) => {
 	// Here we destructure the props we cutted out above of the item (except from id), because we still 
 	// want these values as we use them inside of our component definition below, but need to access
