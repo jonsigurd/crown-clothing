@@ -8,9 +8,16 @@ import logger from 'redux-logger'; // console.log the actions
 import rootReducer from './root-reducer';
 
 // The store expects the middlewares as arrays
-const middlewares = [logger];
+const middlewares = [];
 
-// Spreading in all of the methods or values in the logger array in the function call as individual arguments
+// If the node environment is development, then we want to push the logger into our middleware array
+// above, but if it's production, we don't want the logger (in the heroku deployed app)
+if (process.env.NODE_ENV === 'development') {
+	middleware.push(logger);
+}
+
+// Spreading in all of the methods or values in the logger array in the function call as individual
+// arguments
 // After including persist, we now export the store out
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
