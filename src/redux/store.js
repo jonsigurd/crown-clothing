@@ -13,8 +13,8 @@ const middlewares = [];
 // If the node environment is development, then we want to push the logger into our middleware array
 // above, but if it's production, we don't want the logger (in the heroku deployed app)
 if (process.env.NODE_ENV === 'development') {
-	middleware.push(logger);
-}
+	middlewares.push(logger);
+};
 
 // Spreading in all of the methods or values in the logger array in the function call as individual
 // arguments
