@@ -1,3 +1,3 @@
-Lesson-17 (section: 8, episode 115)
+Lesson-23 (section: 12, episode 135)
 -----------------------------------
-We need to create our cart-item component for our cart and connect our cart component to our cart reducer.
+We have now created our collection page and converted our shop items data over from an array to an object to better leverage our url parameters! Converting arrays over to objects to store data is called data-normalization and it makes searching for specific elements in our code much easier and efficient!
