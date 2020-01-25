@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
 
-import './collection-item.styles.scss';
+import { CollectionItemContainer, CollectionFooterContainer, AddButton, BackgroundImage, NameContainer, PriceContainer } from './collection-item.styles';
 
 // Because of the changes in 'collection-previews.component.jsx', we now have access to our item
 // object and instead of 'id, name, price, imageUrl', we just pass in item
@@ -18,19 +17,14 @@ const CollectionItem = ({ item, addItem }) => {
 	return (
 	// Now on CustomButton we say onClick is the function that will fire calling the addItem and pass
 	//item in
-	<div className='collection-item'>
-		<div
-			className='image'
-			style={{
-				backgroundImage: `url(${imageUrl})`
-			}}
-		/>
-		<div className='collection-footer'>
-			<span className='name'>{name}</span>
-			<span className='price'>{price}</span>
-		</div>
-		<CustomButton onClick={() => addItem(item)} inverted>ADD TO CART</CustomButton>
-	</div>
+	<CollectionItemContainer>
+		<BackgroundImage className='image' imageUrl={imageUrl} />
+		<CollectionFooterContainer>
+			<NameContainer>{name}</NameContainer>
+			<PriceContainer className='price'>{price}</PriceContainer>
+		</CollectionFooterContainer>
+		<AddButton onClick={() => addItem(item)} inverted>ADD TO CART</AddButton>
+	</CollectionItemContainer>
 )}
 
 // Making our mapDispatchToProps with our addItem

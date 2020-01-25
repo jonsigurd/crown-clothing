@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
 
-import './checkout-item.styles.scss';
+import { CheckoutItemContainer, ImageContainer, TextContainer, QuantityContainer, RemoveButtonContainer } from './checkout-item.styles';
 
 // Here we pass the whole item as a prop, because we want to be able to increase and decrease the
 // quantity and also remove the item inside our CheckoutItem component
@@ -16,19 +16,19 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
 	// On our remove we do a unanymous function on onClick that calls our new clearItem function that
 	// we're passing in as a prop, and then we pass cartItem in. Now clearItem works!
 	return (
-		<div className='checkout-item'>
-			<div className='image-container'>
+		<CheckoutItemContainer>
+			<ImageContainer>
 				<img src={imageUrl} alt='item' />
-			</div>
-			<span className='name'>{name}</span>
-			<span className='quantity'>
-				<div className='arrow' onClick={() => removeItem(cartItem)}>&#10094;</div>
-				<span className='value'>{quantity}</span>
-				<div className='arrow' onClick={() => addItem(cartItem)}>&#10095;</div>
-			</span>
-			<span className='price'>{price}</span>
-			<div className='remove-button' onClick={() => clearItem(cartItem)}>&#10005;</div>
-		</div>
+			</ImageContainer>
+			<TextContainer>{name}</TextContainer>
+			<QuantityContainer>
+				<div onClick={() => removeItem(cartItem)}>&#10094;</div>
+				<span>{quantity}</span>
+				<div onClick={() => addItem(cartItem)}>&#10095;</div>
+			</QuantityContainer>
+			<TextContainer>{price}</TextContainer>
+			<RemoveButtonContainer onClick={() => clearItem(cartItem)}>&#10005;</RemoveButtonContainer>
+		</CheckoutItemContainer>
 	);
 };
 

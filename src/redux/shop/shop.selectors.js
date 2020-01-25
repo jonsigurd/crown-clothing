@@ -14,8 +14,7 @@ export const selectCollections = createSelector(
 	shop => shop.collections
 );
 
-// Output selector taht can convert our object of SHOP_DATA into an array
-// 
+// Output selector that can convert our object of SHOP_DATA into an array
 export const selectCollectionsForPreview = createSelector(
 	// Returns createSelector call that gets selectCollections
 	[selectCollections],
@@ -24,7 +23,11 @@ export const selectCollectionsForPreview = createSelector(
 	// womens and mens)
 	// We map over the array of keys and we'll give the key the collections at that key value (the data at
 	// that key)
-	collections => Object.keys(collections).map(key => collections[key])
+	// After making the initial state of collections = null, we now say that if collections is a null object,
+	// then we want to return something different, so we say, if collections exists, tehn call object keys,
+	// if it's false (null), then return an empty version of our collections (in this case it's an empty
+	// array) 
+	collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 );
 
 // Output selector. We pass in the collectionUrlParam, which is a string, and we'll return
@@ -33,5 +36,9 @@ export const selectCollection = collectionUrlParam => createSelector(
 	// Returns createSelector call that gets selectCollections
 	[selectCollections],
 	// This returns the corresponding collection in SHOP_DATA based on the string value of the url
-	collections => collections[collectionUrlParam]
+	// If this collections object doesn't exist, we want to return what will be similar to the above. So if
+	// collections exists, then return the collections with the collectionUrlParam, and if it doesn't, then
+	// we return null. - It's better that we return null, so that the components that use this selector will
+	// get a null object, and so they will naturally know that there is no data here
+	collections => (collections ? collections[collectionUrlParam] : null)
 );

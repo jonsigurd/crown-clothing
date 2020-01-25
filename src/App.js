@@ -18,16 +18,14 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser} from './redux/user/user.selectors';
 
-import './pages/homepage/homepage.styles.scss';
-
 class App extends React.Component {
 	// We don't need a constructer now that we have made the connection arguments
 	
 	unsubscribeFromAuth = null;
 	
 	componentDidMount() {
-		// Destructuring setCurrentUser auth of our props
-		const {setCurrentUser} = this.props;
+		// Destructuring setCurrentUser off of our props
+		const { setCurrentUser } = this.props;
 		
 		// Making this async, because we make a potential api request to firestore
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -42,7 +40,8 @@ class App extends React.Component {
 					// Getting props of data in our database - using snapSHot to get id and .data
 					// to get all the props of the snapShot we want
 					setCurrentUser({
-						// Whenever our user snapShot updates, we are setting the userReducer value with our new object
+						// Whenever our user snapShot updates, we are setting the userReducer value with our
+						// new object
 						id: snapShot.id,
 						...snapShot.data()
 					});
@@ -85,13 +84,17 @@ const mapStateToProps = createStructuredSelector({
 });
 
 // Second connect argument (first in header.component.jsx)
-// Function that gets a dispatch prop and returns an object, where the prop name will be a prop we want to pass in that dispatches the new action that we try to pass, which is SET_CURRENT_USER
+// Function that gets a dispatch prop and returns an object, where the prop name will be a prop we want
+// to pass in that dispatches the new action that we try to pass, which is SET_CURRENT_USER
 const mapDispatchToProps = dispatch => ({
 	// Returning setCurrentUser that goes to a function that gets the user object and calls dispatch
-	// dispatch is a way for redux to know that whatever gets passed, it's going to be an action object that redux will pass to every reducer
-	setCurrentUser: user => dispatch(setCurrentUser(user))
+	// dispatch is a way for redux to know that whatever gets passed, it's going to be an action object
+	// that redux will pass to every reducer
+	setCurrentUser: user => dispatch(setCurrentUser(user)),
 });
 
-// Connecting our app to the outcome of our initial connect call using the second argument of connect (mapDispatchToProps)
-// We replace our first argument from null (our currentUser) to mapStateToProps, so we have access to the actual current user once he's signed in
+// Connecting our app to the outcome of our initial connect call using the second argument of connect
+// (mapDispatchToProps)
+// We replace our first argument from null (our currentUser) to mapStateToProps, so we have access to the
+// actual current user once he's signed in
 export default connect(mapStateToProps, mapDispatchToProps)(App);
