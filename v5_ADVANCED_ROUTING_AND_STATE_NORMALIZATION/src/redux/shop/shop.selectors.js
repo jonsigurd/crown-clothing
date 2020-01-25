@@ -14,8 +14,7 @@ export const selectCollections = createSelector(
 	shop => shop.collections
 );
 
-// Output selector taht can convert our object of SHOP_DATA into an array
-// 
+// Output selector that can convert our object of SHOP_DATA into an array
 export const selectCollectionsForPreview = createSelector(
 	// Returns createSelector call that gets selectCollections
 	[selectCollections],
